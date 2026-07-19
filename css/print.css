@@ -1,0 +1,23 @@
+@media print {
+  body::before { display: none; }
+  .site-header, .site-footer, .print-bar, .page-hero .eyebrow ~ * , .no-print {
+    display: none !important;
+  }
+  .page-hero { display: none !important; }
+  body { background: #fff; color: #111; font-size: 12px; }
+  .cv-sheet {
+    border: none;
+    padding: 0;
+    max-width: 100%;
+    background: #fff;
+  }
+  .cv-name { color: #111; }
+  .cv-role { color: #333; }
+  .cv-contact { color: #333; }
+  .cv-section h3 { color: #333; border-color: #ccc; }
+  .cv-entry-meta { color: #555; }
+  .cv-entry li { color: #222; }
+  .cv-entry li::before { color: #888; }
+  a { color: #111; text-decoration: none; }
+  @page { margin: 18mm; }
+}

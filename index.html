@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adebanjo Johnson Adegbemiro — Business Data Analyst & Data Engineer</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/print.css">
+</head>
+<body>
+
+<span id="top"></span>
+<header id="site-header" class="site-header"></header>
+
+<section class="hero" id="hero-mount"></section>
+
+<section class="section no-print" id="about">
+  <div class="container section-head reveal">
+    <span class="eyebrow">about</span>
+    <h2 class="section-title">Data work that has to hold up in front of people who make decisions with it.</h2>
+    <p class="section-desc">
+      I work across the full path from raw data to a finished report: building the SQL that pulls it,
+      the pipelines and automation that keep it fresh, and the Power BI dashboards and analysis
+      that people actually read. Edit this paragraph directly in index.html to tell your own story.
+    </p>
+  </div>
+</section>
+
+<hr class="divider container no-print">
+
+<section class="section no-print" id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">stack</span>
+      <h2 class="section-title">Tools I work in daily</h2>
+    </div>
+    <div class="skills-grid" id="skills-mount"></div>
+  </div>
+</section>
+
+<hr class="divider container no-print">
+
+<section class="section no-print" id="more-skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">more</span>
+      <h2 class="section-title">More about my stack</h2>
+      <p class="section-desc">
+        Skills without their own big section land here automatically. Add a new tool to
+        <code>skills</code> in <code>js/config.js</code> without a "link" and it shows up as a card
+        below — fill in "highlights" whenever you're ready.
+      </p>
+    </div>
+    <div class="skill-detail-grid" id="more-skills-mount"></div>
+  </div>
+</section>
+
+<hr class="divider container no-print">
+
+<section class="section no-print" id="powerbi">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">power bi</span>
+      <h2 class="section-title">Dashboards &amp; reports</h2>
+      <p class="section-desc">
+        Each card embeds a live Power BI report. To add one: open the report in Power BI Service,
+        go to File → Publish to web, copy the embed link, and paste it into <code>powerbiProjects</code>
+        in <code>js/config.js</code>.
+      </p>
+    </div>
+    <div class="stack-grid" id="powerbi-mount"></div>
+  </div>
+</section>
+
+<hr class="divider container no-print">
+
+<section class="section no-print" id="excel">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">excel</span>
+      <h2 class="section-title">Workflow walkthroughs</h2>
+      <p class="section-desc">
+        Step-by-step screenshots of how a workbook comes together — click any step to view it larger.
+        Add screenshots and captions under <code>excelProjects</code> in <code>js/config.js</code>.
+      </p>
+    </div>
+    <div class="workflow-list" id="excel-mount"></div>
+  </div>
+</section>
+
+<hr class="divider container no-print">
+
+<section class="section no-print" id="sql">
+  <div class="container" style="max-width:820px">
+    <div class="section-head reveal">
+      <span class="eyebrow">sql</span>
+      <h2 class="section-title">Queries worth showing</h2>
+      <p class="section-desc">
+        Add, edit, or remove entries in <code>sqlSnippets</code> inside <code>js/config.js</code> —
+        this section rebuilds itself from that list.
+      </p>
+    </div>
+    <div id="sql-mount"></div>
+  </div>
+</section>
+
+<hr class="divider container no-print">
+
+<section class="section no-print" id="python">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">python</span>
+      <h2 class="section-title">Notebooks &amp; scripts</h2>
+      <p class="section-desc">
+        Convert a notebook with <code>jupyter nbconvert --to html your_notebook.ipynb</code>, drop the
+        output into <code>assets/notebooks/</code>, then point <code>notebookUrl</code> at it in
+        <code>js/config.js</code>. R Markdown work lives here too — knit to PDF and link it the same way.
+      </p>
+    </div>
+    <div class="card-grid" id="python-mount"></div>
+  </div>
+</section>
+
+<hr class="divider container no-print">
+
+<section class="section no-print" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">contact</span>
+      <h2 class="section-title" id="contact-heading"></h2>
+      <p class="section-desc" id="contact-blurb"></p>
+    </div>
+    <form class="contact-card reveal" id="contact-form">
+      <div class="contact-field">
+        <label for="cf-name">Name</label>
+        <input id="cf-name" name="name" type="text" placeholder="Your name" required>
+      </div>
+      <div class="contact-field">
+        <label for="cf-email">Email</label>
+        <input id="cf-email" name="email" type="email" placeholder="you@email.com" required>
+      </div>
+      <div class="contact-field">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" rows="5" placeholder="What are you looking to build or hire for?" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send message</button>
+      <p class="contact-note" id="contact-note"></p>
+    </form>
+  </div>
+</section>
+
+<hr class="divider container no-print">
+
+<section class="section" id="cv">
+  <div class="container">
+    <div class="section-head reveal no-print">
+      <span class="eyebrow">cv</span>
+      <h2 class="section-title">Resume</h2>
+      <p class="section-desc">
+        Edit the <code>cv</code> object in <code>js/config.js</code> — experience, education, and
+        certifications all render from there.
+      </p>
+    </div>
+    <div class="print-bar no-print">
+      <button class="btn btn-primary" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+    <div class="cv-sheet" id="cv-mount"></div>
+  </div>
+</section>
+
+<footer id="site-footer" class="site-footer"></footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-btn lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+  <iframe id="lightbox-frame" title="Enlarged view"></iframe>
+  <p class="lightbox-caption" id="lightbox-caption"></p>
+  <div class="lightbox-controls" id="lightbox-controls">
+    <button class="lightbox-btn" id="lightbox-prev" aria-label="Previous">‹</button>
+    <button class="lightbox-btn" id="lightbox-next" aria-label="Next">›</button>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
