@@ -156,25 +156,20 @@
 
 <section class="section" id="cv">
   <div class="container">
-    <div class="section-head reveal no-print">
+    <div class="section-head reveal">
       <span class="eyebrow">cv</span>
       <h2 class="section-title">Resume</h2>
       <p class="section-desc">
-        Edit the <code>cv</code> object in <code>js/config.js</code> — experience, education, and
-        certifications all render from there.
+        Set <code>cvPdfUrl</code> in <code>js/config.js</code> to your CV file, e.g.
+        <code>assets/adebanjo-cv.pdf</code>.
       </p>
     </div>
-    <div class="print-bar no-print">
-      <button class="btn btn-primary" onclick="window.print()">Print / Save as PDF</button>
-    </div>
-    <div class="cv-pdf-block no-print" id="cv-pdf-block">
-      <div class="cv-pdf-viewer">
+    <div class="cv-pdf-block" id="cv-pdf-block">
+      <div class="cv-pdf-viewer" id="cv-pdf-viewer">
         <iframe id="cv-pdf-frame" title="CV PDF"></iframe>
       </div>
       <a class="btn btn-primary" id="cv-pdf-download" href="#" download>Download CV (PDF)</a>
     </div>
-    <p class="section-desc no-print" id="cv-text-label">Text version below (for accessibility and quick scanning):</p>
-    <div class="cv-sheet" id="cv-mount"></div>
   </div>
 </section>
 

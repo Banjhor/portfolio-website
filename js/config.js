@@ -175,31 +175,10 @@ ORDER BY 1, 2;`
     }
   ],
 
-  // ---- CV content -------------------------------------------------
-  // Drop your real CV PDF into /assets and point cvPdfUrl at it, e.g.
-  // "assets/adebanjo-cv.pdf" — it'll show embedded on the page with a
-  // download button. Leave it blank and only the text version below shows.
-  cvPdfUrl: "",
-
-  cv: {
-    summary: "Business Data Analyst & Data Engineer with experience turning operational data into reporting systems and decision-ready dashboards across SQL, Power BI, Python and R.",
-    experience: [
-      {
-        role: "Business Data Analyst",
-        company: "Company Name",
-        period: "2023 — Present",
-        points: [
-          "Built and maintained Power BI dashboards used by leadership for weekly reporting",
-          "Wrote and optimised SQL queries against production databases",
-          "Automated recurring reports with Power Automate, cutting manual reporting time"
-        ]
-      }
-    ],
-    education: [
-      { degree: "Degree name", school: "Institution", period: "20XX — 20XX" }
-    ],
-    certifications: [
-      "Certification name — Issuer, Year"
-    ]
-  }
+  // ---- CV ---------------------------------------------------------
+  // Drop your real CV PDF into /assets (e.g. assets/adebanjo-cv.pdf, no
+  // need to repeat "assets" in the filename) and point cvPdfUrl at it.
+  // The hero's button and the CV section both use this — leave it blank
+  // and the CV section shows a placeholder until you add one.
+  cvPdfUrl: ""
 };

@@ -136,7 +136,7 @@ function renderHero() {
       <p class="hero-role">${c.role}</p>
       <p class="hero-tagline">${c.tagline}</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#cv">View CV</a>
+        <a class="btn btn-primary" href="${c.cvPdfUrl || '#cv'}" ${c.cvPdfUrl ? 'download' : ''}>${c.cvPdfUrl ? 'Download CV' : 'View CV'}</a>
         <a class="btn" href="#powerbi">See Power BI work</a>
         <a class="btn" href="#sql">Browse SQL</a>
       </div>
@@ -311,77 +311,20 @@ function renderPython() {
 }
 
 function renderCV() {
-  const mount = document.getElementById('cv-mount');
-  if (!mount) return;
-  const c = SITE_CONFIG;
-  const cv = c.cv;
-
   const pdfBlock = document.getElementById('cv-pdf-block');
-  const pdfLabel = document.getElementById('cv-text-label');
-  if (pdfBlock) {
-    if (c.cvPdfUrl) {
-      document.getElementById('cv-pdf-frame').src = c.cvPdfUrl;
-      document.getElementById('cv-pdf-download').href = c.cvPdfUrl;
-      pdfBlock.style.display = '';
-      if (pdfLabel) pdfLabel.style.display = '';
-    } else {
-      pdfBlock.style.display = 'none';
-      if (pdfLabel) pdfLabel.style.display = 'none';
-    }
+  if (!pdfBlock) return;
+  const c = SITE_CONFIG;
+  const viewer = document.getElementById('cv-pdf-viewer');
+  const downloadBtn = document.getElementById('cv-pdf-download');
+
+  if (c.cvPdfUrl) {
+    viewer.innerHTML = `<iframe id="cv-pdf-frame" title="CV PDF" src="${c.cvPdfUrl}"></iframe>`;
+    downloadBtn.href = c.cvPdfUrl;
+    downloadBtn.style.display = '';
+  } else {
+    viewer.innerHTML = `<div class="card-embed-placeholder">no CV uploaded yet —<br>drop a PDF in /assets<br>and set "cvPdfUrl" in config.js</div>`;
+    downloadBtn.style.display = 'none';
   }
-
-  mount.innerHTML = `
-    <div class="cv-head">
-      <div>
-        <div class="cv-name">${fullName(c)}</div>
-        <div class="cv-role">${c.role}</div>
-      </div>
-      <div class="cv-contact">
-        ${c.email}<br>${c.location}<br>
-        ${c.socials.linkedin ? c.socials.linkedin.replace('https://','') : ''}
-      </div>
-    </div>
-
-    <div class="cv-section">
-      <h3>Summary</h3>
-      <p>${cv.summary}</p>
-    </div>
-
-    <div class="cv-section">
-      <h3>Experience</h3>
-      ${cv.experience.map(e => `
-        <div class="cv-entry">
-          <div class="cv-entry-head">
-            <span class="cv-entry-role">${e.role} — ${e.company}</span>
-            <span class="cv-entry-meta">${e.period}</span>
-          </div>
-          <ul>${e.points.map(pt => `<li>${pt}</li>`).join('')}</ul>
-        </div>
-      `).join('')}
-    </div>
-
-    <div class="cv-section">
-      <h3>Education</h3>
-      ${cv.education.map(ed => `
-        <div class="cv-entry">
-          <div class="cv-entry-head">
-            <span class="cv-entry-role">${ed.degree} — ${ed.school}</span>
-            <span class="cv-entry-meta">${ed.period}</span>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-
-    <div class="cv-section">
-      <h3>Certifications</h3>
-      <ul>${cv.certifications.map(ct => `<li>${ct}</li>`).join('')}</ul>
-    </div>
-
-    <div class="cv-section">
-      <h3>Tools</h3>
-      <p>${c.skills.map(s => s.name).join(' · ')}</p>
-    </div>
-  `;
 }
 
 function renderExcel() {
