@@ -316,6 +316,20 @@ function renderCV() {
   const c = SITE_CONFIG;
   const cv = c.cv;
 
+  const pdfBlock = document.getElementById('cv-pdf-block');
+  const pdfLabel = document.getElementById('cv-text-label');
+  if (pdfBlock) {
+    if (c.cvPdfUrl) {
+      document.getElementById('cv-pdf-frame').src = c.cvPdfUrl;
+      document.getElementById('cv-pdf-download').href = c.cvPdfUrl;
+      pdfBlock.style.display = '';
+      if (pdfLabel) pdfLabel.style.display = '';
+    } else {
+      pdfBlock.style.display = 'none';
+      if (pdfLabel) pdfLabel.style.display = 'none';
+    }
+  }
+
   mount.innerHTML = `
     <div class="cv-head">
       <div>

@@ -176,6 +176,11 @@ ORDER BY 1, 2;`
   ],
 
   // ---- CV content -------------------------------------------------
+  // Drop your real CV PDF into /assets and point cvPdfUrl at it, e.g.
+  // "assets/adebanjo-cv.pdf" — it'll show embedded on the page with a
+  // download button. Leave it blank and only the text version below shows.
+  cvPdfUrl: "",
+
   cv: {
     summary: "Business Data Analyst & Data Engineer with experience turning operational data into reporting systems and decision-ready dashboards across SQL, Power BI, Python and R.",
     experience: [
