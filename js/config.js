@@ -16,7 +16,7 @@ const SITE_CONFIG = {
   role: "Data Analyst & Aspiring Data Engineer",
   tagline: "I turn raw, messy data into pipelines, dashboards and queries that hold up in production.",
   location: "Lagos, Nigeria",
-  email: "youremail@example.com",
+  email: "adebanjojohnson1@gmail.com",
 
   // Swap this for your own photo: drop a file in /assets (e.g. assets/profile.jpg)
   // and change the path below. Keep it a portrait, decent resolution — it sits
@@ -25,8 +25,8 @@ const SITE_CONFIG = {
 
   // ---- Socials (leave blank "" to hide the icon) --------------------
   socials: {
-    linkedin: "https://linkedin.com/in/yourprofile",
-    github: "https://github.com/yourusername",
+    linkedin: "https://linkedin.com/in/adebanjo-adegbemiro",
+    github: "https://github.com/Banjhor",
     twitter: "",
     whatsapp: ""
   },
@@ -44,7 +44,7 @@ const SITE_CONFIG = {
     { name: "Python", detail: "Pandas, automation scripts, exploratory analysis", link: "#python" },
     { name: "Excel", detail: "Advanced formulas, pivot tables, financial models", link: "#excel" },
     { name: "R", detail: "Statistical analysis and reporting", link: "#python" },
-    { name: "Power Automate", detail: "Workflow automation, data refresh triggers", highlights: [] }
+    { name: "Power Automate", detail: "Workflow automation, data refresh triggers", link: "#automate" }
   ],
 
   // ---- Contact / hire me ------------------------------------------
@@ -101,16 +101,24 @@ const SITE_CONFIG = {
         { src: "", caption: "Step 4 — chart output" },
         { src: "", caption: "Step 5 — final dashboard view" }
       ]
-    },
+    }
+  ],
+
+  // ---- Power Automate flows ------------------------------------------
+  // Same pattern as Excel: a numbered strip of screenshots per flow, each
+  // with a caption. Drop screenshots in /assets and set "src" for each
+  // step; leave it blank and that step shows a placeholder until you add
+  // one. Click any step on the live site to view it larger.
+  automateProjects: [
     {
-      title: "Inventory Reconciliation Sheet",
-      description: "Cleaning and matching two inventory exports before they feed the weekly report.",
-      tags: ["Excel", "Data Cleaning"],
+      title: "Invoice Approval Automation",
+      description: "Auto-routes vendor invoices over a set amount to the right approver and logs the outcome.",
+      tags: ["Power Automate", "Approvals"],
       images: [
-        { src: "", caption: "Step 1 — raw export side by side" },
-        { src: "", caption: "Step 2 — VLOOKUP match check" },
-        { src: "", caption: "Step 3 — conditional formatting flags" },
-        { src: "", caption: "Step 4 — reconciled summary" }
+        { src: "", caption: "Trigger — new invoice email" },
+        { src: "", caption: "Condition — amount check" },
+        { src: "", caption: "Approval sent to manager" },
+        { src: "", caption: "Logged to SharePoint" }
       ]
     }
   ],
@@ -132,24 +140,118 @@ FROM daily_sales
 ORDER BY order_date;`
     },
     {
-      title: "Customer cohort retention",
-      description: "CTE-based cohort table for month-over-month retention.",
-      language: "sql",
+      title: "Cross-System Payment Reconciliation & Churn Risk Detection",
+description: "Combines two payment systems (a legacy schema and its replacement) into one normalized dataset, resolving mismatched status values and a collation conflict, then flags customers who haven't done any transaction since they last had a failed transaction.",
+language: "sql",
       code:
-`WITH first_order AS (
-  SELECT customer_id, MIN(order_date) AS cohort_month
-  FROM orders
-  GROUP BY customer_id
+`-- Identify customers whose most recent bill payment attempt failed,
+-- and who have made no successful payment since.
+-- Data spans two source systems (a legacy schema and its replacement),
+-- combined here into a single normalized view.
+
+WITH unified_payments AS (
+
+    -- Source 1: current payment system
+    -- Status values here use a different vocabulary than the legacy system,
+    -- so they're normalized down to just 'paid' / 'failed'.
+    SELECT 
+        email COLLATE utf8mb4_unicode_ci AS email, 
+        phone_no COLLATE utf8mb4_unicode_ci AS phone_no, 
+        created_at, 
+        amount,
+        CASE 
+            WHEN status IN ('Successful', 'SUCCESS') THEN 'paid'
+            ELSE 'failed'
+        END AS transaction_status
+    FROM current_system.payment_transactions
+
+    UNION ALL
+
+    -- Source 2: legacy payment system (retired, no longer receiving new data)
+    -- Collation differed from the current system, which caused a UNION error
+    -- until explicitly aligned via COLLATE above.
+    SELECT 
+        customer_email AS email, 
+        customer_phone_no AS phone_no, 
+        created_at, 
+        amount,
+        CASE 
+            WHEN status IN ('paid', 'passed') THEN 'paid'
+            ELSE 'failed'
+        END AS transaction_status
+    FROM legacy_system.bill_payments
+),
+
+last_failed_transaction AS (
+    -- Find each customer's most recent failed payment
+    SELECT 
+        email,
+        phone_no,
+        MAX(created_at) AS last_failed_date
+    FROM unified_payments
+    WHERE transaction_status = 'failed'
+    GROUP BY email, phone_no
 )
-SELECT
-  DATE_TRUNC('month', f.cohort_month) AS cohort,
-  DATE_TRUNC('month', o.order_date)   AS order_month,
-  COUNT(DISTINCT o.customer_id)       AS active_customers
-FROM orders o
-JOIN first_order f USING (customer_id)
-GROUP BY 1, 2
-ORDER BY 1, 2;`
-    }
+
+SELECT 
+    ft.email,
+    ft.phone_no,
+    ft.last_failed_date,
+    up.amount,
+    CASE 
+        WHEN ft.last_failed_date >= '2026-01-01' AND ft.last_failed_date < '2026-04-01' THEN 'Q1'
+        WHEN ft.last_failed_date >= '2026-04-01' AND ft.last_failed_date < '2026-07-01' THEN 'Q2'
+    END AS quarter
+FROM last_failed_transaction ft
+JOIN unified_payments up 
+    ON up.email = ft.email 
+   AND up.phone_no = ft.phone_no 
+   AND up.created_at = ft.last_failed_date
+   AND up.transaction_status = 'failed'
+WHERE ft.last_failed_date >= '2026-01-01' 
+  AND ft.last_failed_date < '2026-07-01'
+  AND NOT EXISTS (
+        -- Exclude anyone who made a successful payment after their failure
+        SELECT 1 
+        FROM unified_payments up2
+        WHERE up2.email = ft.email 
+          AND up2.phone_no = ft.phone_no 
+          AND up2.transaction_status = 'paid'
+          AND up2.created_at > ft.last_failed_date
+  );`
+    },
+    
+    {
+  title: "Churn Detection for Retargeting",
+  description: "Flags verified users inactive 90+ days, bucketed by inactivity window, for marketing retargeting.",
+  language: "sql",
+  code:
+`SELECT 
+  u.id,
+  u.first_name,
+  u.last_name,
+  u.email,
+  u.phone_number,
+  MAX(t.created_at) AS last_transaction_date,
+  DATEDIFF(NOW(), MAX(t.created_at)) AS days_inactive,
+  CASE
+    WHEN DATEDIFF(NOW(), MAX(t.created_at)) BETWEEN 90 AND 180 THEN '3-6 Months'
+    WHEN DATEDIFF(NOW(), MAX(t.created_at)) BETWEEN 181 AND 270 THEN '6-9 Months'
+    WHEN DATEDIFF(NOW(), MAX(t.created_at)) BETWEEN 271 AND 365 THEN '9-12 Months'
+    WHEN DATEDIFF(NOW(), MAX(t.created_at)) > 365 THEN 'Above 1 Year'
+  END AS churn_category
+FROM users u                                   -- dimension table: one row per user
+JOIN user_profiles p ON u.id = p.user_id        -- dimension table: KYC/verification attributes
+JOIN accounts a ON u.id = a.user_id             -- bridge table: links a user to their account(s)
+  AND a.account_type = 'primary'
+JOIN transactions t ON a.id = t.account_id      -- fact table: one row per transaction event
+WHERE 
+  u.email_verified_at IS NOT NULL
+  AND p.identity_verified = 1
+GROUP BY u.id, u.first_name, u.last_name, u.email, u.phone_number
+HAVING DATEDIFF(NOW(), MAX(t.created_at)) >= 90
+ORDER BY days_inactive DESC;`
+}
   ],
 
   // ---- Python / notebook projects -------------------------------------
@@ -172,7 +274,15 @@ ORDER BY 1, 2;`
       notebookUrl: "",
       githubUrl: "",
       image: ""
-    }
+    },
+    {
+  title: "Health Care Analysis",
+  description: "Exploratory analysis of health outcomes data.",
+  tags: ["R", "R Markdown"],
+  notebookUrl: "assets/notebooks/Health-Analysis.html",
+  githubUrl: "",
+  image: ""
+}
   ],
 
   // ---- CV ---------------------------------------------------------
@@ -180,5 +290,5 @@ ORDER BY 1, 2;`
   // need to repeat "assets" in the filename) and point cvPdfUrl at it.
   // The hero's button and the CV section both use this — leave it blank
   // and the CV section shows a placeholder until you add one.
-  cvPdfUrl: ""
+  cvPdfUrl: "assets/Adebanjo_ Adegbemiro_ Data_analyst_Resume.pdf"
 };

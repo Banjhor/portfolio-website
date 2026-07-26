@@ -92,7 +92,7 @@ function initTheme() {
 }
 
 function initScrollSpy() {
-  const sections = ['about', 'skills', 'powerbi', 'excel', 'sql', 'python', 'cv']
+  const sections = ['about', 'skills', 'powerbi', 'excel', 'automate', 'sql', 'python', 'cv']
     .map(id => document.getElementById(id))
     .filter(Boolean);
   if (!sections.length) return;
@@ -363,6 +363,42 @@ function renderExcel() {
   });
 }
 
+function renderAutomate() {
+  const mount = document.getElementById('automate-mount');
+  if (!mount) return;
+
+  mount.innerHTML = SITE_CONFIG.automateProjects.map((p, pi) => `
+    <div class="card workflow-card reveal">
+      <div class="card-body">
+        <div class="card-title">${p.title}</div>
+        <div class="card-desc">${p.description}</div>
+        <div class="tag-row">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <div class="workflow-grid">
+          ${p.images.map((img, i) => `
+            <div class="workflow-item" data-project="${pi}" data-step="${i}">
+              <div class="workflow-step">
+                <span class="step-num">${i + 1}/${p.images.length}</span>
+                ${img.src
+                  ? `<img src="${img.src}" alt="${img.caption || p.title + ' step ' + (i + 1)}">`
+                  : `<div class="workflow-step-placeholder">add screenshot<br>&amp; set "src" in<br>config.js</div>`}
+              </div>
+              <p class="workflow-caption">${img.caption || `Step ${i + 1}`}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  mount.querySelectorAll('.workflow-item').forEach(step => {
+    step.addEventListener('click', () => {
+      const pi = Number(step.dataset.project);
+      const si = Number(step.dataset.step);
+      openLightbox(SITE_CONFIG.automateProjects[pi].images, si, SITE_CONFIG.automateProjects[pi].title);
+    });
+  });
+}
+
 let lightboxImages = [];
 let lightboxIndex = 0;
 
@@ -473,6 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderMoreSkills();
   renderPowerBI();
   renderExcel();
+  renderAutomate();
   renderSQL();
   renderPython();
   renderCV();
