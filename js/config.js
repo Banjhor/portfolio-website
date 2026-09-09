@@ -44,7 +44,7 @@ const SITE_CONFIG = {
     { name: "Python", detail: "Pandas, automation scripts, exploratory analysis", link: "#python" },
     { name: "Excel", detail: "Advanced formulas, pivot tables, financial models", link: "#excel" },
     { name: "R", detail: "Statistical analysis and reporting", link: "#python" },
-    { name: "Power Automate", detail: "Workflow automation, data refresh triggers", link: "#automate" }
+    { name: "Automation", detail: "Workflow automation across Power Automate, n8n, and similar tools", link: "#automate" }
   ],
 
   // ---- Contact / hire me ------------------------------------------
@@ -110,18 +110,20 @@ const SITE_CONFIG = {
   // step; leave it blank and that step shows a placeholder until you add
   // one. Click any step on the live site to view it larger.
   automateProjects: [
-    {
-      title: "Invoice Approval Automation",
-      description: "Auto-routes vendor invoices over a set amount to the right approver and logs the outcome.",
-      tags: ["Power Automate", "Approvals"],
-      images: [
-        { src: "", caption: "Trigger — new invoice email" },
-        { src: "", caption: "Condition — amount check" },
-        { src: "", caption: "Approval sent to manager" },
-        { src: "", caption: "Logged to SharePoint" }
-      ]
-    }
-  ],
+  {
+    title: "Staff Onboarding & Offboarding Automation",
+    description: "Replaced a manual, Excel-only process HR used to track staff onboarding and offboarding with a Power Automate flow feeding a live Power BI dataset. HR submits a single Microsoft Form for either a new starter or a leaver, and the flow branches on that choice. Before writing anything, it checks 'List rows present in a table' so a row is only added if the person isn't already active, and offboarding removes them instead of creating a duplicate record. This also makes sure no one can be marked active on both sides at once. The result is written to an Active Staff Database tagged with each person's category and referral code, which the data team queries directly into Power BI to track headcount, sales performance, and KPIs by role, covering Normal staff, DSA, BDM, and Campus Ambassador.",
+    tags: ["Power Automate", "HR Automation", "SharePoint", "Power BI", "Process Improvement"],
+    images: [
+      { src: "assets/Power Automate/Onboarding and Offboarding/solution overview.png", caption: "Solution overview — from HR form submission to Power BI KPI dashboards" },
+      { src: "assets/Power Automate/Onboarding and Offboarding/Trigger.png", caption: "Trigger — Staff Details form: onboarding or offboarding" },
+      { src: "assets/Power Automate/Onboarding and Offboarding/Onboarding.png", caption: "Onboarding details captured — name, referral code, category" },
+      { src: "assets/Power Automate/Onboarding and Offboarding/Offboarding.png", caption: "Offboarding details captured — name, referral code, category" },
+      { src: "assets/Power Automate/Onboarding and Offboarding/Logic and Flow.png", caption: "Flow logic: 'List rows present in a table' checked before add or remove, preventing duplicate or conflicting staff records" },
+      { src: "assets/Power Automate/Onboarding and Offboarding/powerBI schema link.png", caption: "Power BI data model — staff, category, and referral tables connected for KPI reporting" }
+    ],
+  }
+],
 
   // ---- SQL snippets --------------------------------------------------
   sqlSnippets: [
