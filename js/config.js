@@ -293,5 +293,5 @@ ORDER BY days_inactive DESC;`
   // need to repeat "assets" in the filename) and point cvPdfUrl at it.
   // The hero's button and the CV section both use this — leave it blank
   // and the CV section shows a placeholder until you add one.
-  cvPdfUrl: "assets/Adebanjo_ Adegbemiro_ Data_analyst_Resume.pdf"
+  cvPdfUrl: "assets/Adebanjo_Adegbemiro_Data_Analyst_Resume.pdf" 
 };
