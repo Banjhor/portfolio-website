@@ -63,18 +63,19 @@ const SITE_CONFIG = {
   // "Read more" toggle so the card stays clean until someone clicks it.
   powerbiProjects: [
     {
-      title: "Sales Performance Dashboard",
-      description: "Regional sales tracking with YoY comparisons and target drill-downs.",
-      tags: ["Power BI", "DAX", "Sales"],
-      embedUrl: "",
-      image: "",
-      details: [
-        "Connected to the company's SQL Server sales database and modeled a star schema across 4 fact tables",
-        "Built DAX measures for YoY growth, rolling 90-day trend, and target attainment by region",
-        "Added row-level security so regional managers only see their own territory",
-        "Refreshes nightly via a scheduled Power Automate flow"
-      ]
-    },
+  "title": "GeoPay Executive Analytics Dashboard",
+  "description": "End-to-end fintech analytics for a fictional Nigerian payments company — customer lifecycle, GTV, fee revenue, fraud, and support operations across 2022–2026.",
+  "tags": ["Power BI", "DAX", "Python", "Star Schema", "Fintech"],
+  "embedUrl": "https://app.powerbi.com/view?r=eyJrIjoiNjNlZDEyM2YtMWRlNC00Mzg4LTkwOTgtN2I4N2Q3NGQwYTFjIiwidCI6IjBmYmYzYTYzLWIyZjMtNGIxZC1hN2Y1LTgxMTY5ZjgzNGI4YSJ9&embedImagePlaceholder=true",
+  "image": "",
+  "details": [
+    "Designed a star schema in Power BI (FactTransactions, FactSupportTickets, DimCustomer, DimAccount, DimCard, DateTable) with inactive date relationships and USERELATIONSHIP for signup vs transaction time intelligence",
+    "Generated a 1.4M+ row synthetic Nigerian fintech dataset in Python (120K customers, 145K accounts, 95K cards, 1M transactions, 45K tickets) with referential integrity, Lagos-weighted geography, and realistic acquisition/KYC/tier funnels",
+    "Built a 4-page report: Executive Overview, Customer Insights, Transactions & Revenue, Support & Operations — synced Year/State/Tier slicers, YoY KPI cards, and ops visuals (category, channel, agent scorecard)",
+    "Wrote DAX for GTV, fee revenue, fraud rate, KYC verified %, HNI share, resolution rate, CSAT, and prior-year comparisons using SAMEPERIODLASTYEAR",
+    "Tuned support data to a 3–4 hour SLA, uneven ticket categories (including Tier Upgrade), and realistic channels (In-App, WhatsApp, Phone, Twitter/X, Email)"
+  ]
+},
     {
       title: "HR Attrition Analysis",
       description: "Workforce turnover trends segmented by department and tenure.",
