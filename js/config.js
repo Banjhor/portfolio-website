@@ -123,7 +123,58 @@ const SITE_CONFIG = {
       { src: "assets/Power Automate/Onboarding and Offboarding/Logic and Flow.png", caption: "Flow logic: 'List rows present in a table' checked before add or remove, preventing duplicate or conflicting staff records" },
       { src: "assets/Power Automate/Onboarding and Offboarding/powerBI schema link.png", caption: "Power BI data model — staff, category, and referral tables connected for KPI reporting" }
     ],
-  }
+  },
+{
+  title: "Inventory, Production & Sales Management System",
+
+  description: "Designed and built an automated inventory and production management system connecting raw-material movements, production activity, finished goods, and sales within a single operational workflow. The solution maintains controlled master data, records inventory movements through structured transaction logs, provides batch-level production traceability, monitors current stock against defined reorder levels, and automatically alerts relevant teams when stock requires attention. The system was designed to improve inventory visibility, production accountability, and operational control while reducing reliance on manual stock reconciliation.",
+
+  tags: [
+    "Google Sheets",
+    "Google Apps Script",
+    "JavaScript",
+    "Inventory Management",
+    "Production Automation",
+    "Data Modelling",
+    "Process Improvement",
+    "Process Automation"
+  ],
+
+  images: [
+    {
+      src: "assets/Googlesheet Automation/Inventory Management System/Interface.png",
+      caption: "Process overview — from master data and raw-material movements through production, finished goods, sales, and automated stock monitoring"
+    },
+    {
+      src: "assets/Googlesheet Automation/Inventory Management System/01_raw_material_setup_operations.png",
+      caption: "Raw material setup and operations — controlled material master feeding stock-in, stock-out, and production workflows"
+    },
+    {
+      src: "assets/Googlesheet Automation/Inventory Management System/02_inventory_transactions.png",
+      caption: "Inventory transaction ledger — every stock movement recorded with quantity, transaction type, resulting balance, and production reference where applicable"
+    },
+    {
+      src: "assets/Googlesheet Automation/Inventory Management System/03_current_inventory.png",
+      caption: "Current inventory position — transaction movements consolidated into current stock and evaluated against defined reorder levels"
+    },
+    {
+      src: "assets/Googlesheet Automation/Inventory Management System/04_production_traceability.png",
+      caption: "Production traceability — shared Production/Batch ID links multiple raw-material consumption transactions to the finished product and quantity recorded in the Production Log"
+    },
+    {
+      src: "assets/Googlesheet Automation/Inventory Management System/05_finished_goods_master.png",
+      caption: "Finished Goods Master — controlled product records determine the active products available for production"
+    },
+    {
+      src: "assets/Googlesheet Automation/Inventory Management System/06_sales_operations.png",
+      caption: "Sales operations — finished goods received into sales inventory and dispatched through a controlled sales workflow"
+    },
+    {
+      src: "assets/Googlesheet Automation/Inventory Management System/07_automated_stock_alerts.png",
+      caption: "Automated inventory monitoring — low-stock and out-of-stock conditions trigger email alerts for operational follow-up"
+    }
+  ]
+}
 ],
 
   // ---- SQL snippets --------------------------------------------------
