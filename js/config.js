@@ -125,6 +125,38 @@ const SITE_CONFIG = {
     ],
   },
 {
+  title: "Incident Reporting & Escalation Automation",
+
+  description: "Built an end-to-end incident reporting and escalation workflow using Microsoft Forms, Power Automate, SharePoint, and Outlook. Employees submit incidents through a structured Microsoft Form capturing the incident type, reporter severity, department, description, affected system or location, and date identified. Power Automate retrieves each submission, generates a unique Incident ID, and creates a structured record in a central SharePoint incident register. The flow then applies conditional routing to distinguish security or high-priority incidents from standard reports, automatically sending the appropriate email notification for faster escalation. SharePoint acts as the system of record, separating employee-reported information from administrative fields used to manage status, severity, assignment, team ownership, and resolution. This gives administrators a central workspace for progressing each ticket while maintaining a traceable incident record from initial submission through review and resolution.",
+
+  tags: [
+    "Power Automate",
+    "Microsoft Forms",
+    "SharePoint Lists",
+    "SharePoint",
+    "Outlook",
+    "Workflow Automation",
+    "Incident Management"
+  ],
+  images: [
+    {src: "assets/Power Automate/Incident reports form/01_form_intake.png",
+      caption: "Incident intake — structured Microsoft Form used by employees to report incidents and provide the information required for initial triage"
+    },
+    {src: "assets/Power Automate/Incident reports form/02_power_automate.png",
+      caption: "Automated workflow — response retrieval, Incident ID generation, SharePoint record creation, conditional priority routing, and email notification"
+    },
+    {src: "assets/Power Automate/Incident reports form/03_sharepoint_system_of_record.png",
+      caption: "Central incident register — SharePoint stores each incident as a structured record for tracking and administration"
+    },
+    {src: "assets/Power Automate/Incident reports form/04_email_notifications.png",
+      caption: "Automated notifications — standard incident emails and higher-priority security alerts are routed according to workflow conditions"
+    },
+    {src: "assets/Power Automate/Incident reports form/05_admin_ticket_management.png",
+      caption: "Administrative ticket management — incident details are reviewed and managed through the SharePoint record"
+    }
+  ]
+},
+{
   title: "Inventory, Production & Sales Management System",
 
   description: "Designed and built an automated inventory and production management system connecting raw-material movements, production activity, finished goods, and sales within a single operational workflow. The solution maintains controlled master data, records inventory movements through structured transaction logs, provides batch-level production traceability, monitors current stock against defined reorder levels, and automatically alerts relevant teams when stock requires attention. The system was designed to improve inventory visibility, production accountability, and operational control while reducing reliance on manual stock reconciliation.",
