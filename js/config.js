@@ -76,13 +76,20 @@ const SITE_CONFIG = {
     "Tuned support data to a 3–4 hour SLA, uneven ticket categories (including Tier Upgrade), and realistic channels (In-App, WhatsApp, Phone, Twitter/X, Email)"
   ]
 },
-    {
-      title: "HR Attrition Analysis",
-      description: "Workforce turnover trends segmented by department and tenure.",
-      tags: ["Power BI", "HR Analytics"],
-      embedUrl: "",
-      image: ""
-    }
+   {
+  "title": "Nexora Retail Analytics Dashboard",
+  "description": "End-to-end retail analytics for a fictional global retailer — sales performance, product intelligence, customer behaviour, digital channels, geography, and fulfilment across 2022–2026.",
+  "tags": ["Power BI", "DAX", "Python", "Retail Analytics", "Data Modeling"],
+  "embedUrl": "https://app.powerbi.com/view?r=eyJrIjoiMzM2YmM2NjctOWU0Mi00N2NlLWExOWUtNzI4NDgyYzhhNGI0IiwidCI6IjBmYmYzYTYzLWIyZjMtNGIxZC1hN2Y1LTgxMTY5ZjgzNGI4YSJ9&pageName=71b15c450e49ecc02e50",
+  "image": "",
+  "details": [
+    "Built an interactive retail analytics solution covering sales, products, customers, digital channels, geography, and fulfilment across 2022–2026",
+    "Implemented dynamic previous-period comparisons that adapt to the selected date range, allowing users to evaluate changes in revenue, units sold, customers, average unit price, and revenue per buyer",
+    "Analyzed product and category performance across Electronics, Fashion, Home, Beauty, Grocery, and Sports, with product-level rankings and category contribution analysis",
+    "Integrated customer, channel, and geographic analysis covering repeat purchasing, demographics, Web/App/Marketplace performance, and revenue across international markets",
+    "Added fulfilment analysis to track average shipping days and fulfilment lag over time, translating the analysis into business insights around volume-driven growth, category concentration, and operational performance"
+  ]
+}
   ],
 
   // ---- Excel workflow walkthroughs ------------------------------------
