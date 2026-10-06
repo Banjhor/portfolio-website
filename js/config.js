@@ -62,23 +62,23 @@ const SITE_CONFIG = {
   // project (what you did, tools used, outcome). It shows behind a
   // "Read more" toggle so the card stays clean until someone clicks it.
   powerbiProjects: [
-    {
+   {
   "title": "GeoPay Executive Analytics Dashboard",
-  "description": "End-to-end fintech analytics for a fictional Nigerian payments company — customer lifecycle, GTV, fee revenue, fraud, and support operations across 2022–2026.",
+  "description": "End-to-end fintech analytics for a Nigerian fintech company — customer lifecycle, GTV, fee revenue, fraud, and support operations across 2022–2026.",
   "tags": ["Power BI", "DAX", "Python", "Star Schema", "Fintech"],
   "embedUrl": "https://app.powerbi.com/view?r=eyJrIjoiNjNlZDEyM2YtMWRlNC00Mzg4LTkwOTgtN2I4N2Q3NGQwYTFjIiwidCI6IjBmYmYzYTYzLWIyZjMtNGIxZC1hN2Y1LTgxMTY5ZjgzNGI4YSJ9&embedImagePlaceholder=true",
   "image": "",
   "details": [
     "Designed a star schema in Power BI (FactTransactions, FactSupportTickets, DimCustomer, DimAccount, DimCard, DateTable) with inactive date relationships and USERELATIONSHIP for signup vs transaction time intelligence",
-    "Generated a 1.4M+ row synthetic Nigerian fintech dataset in Python (120K customers, 145K accounts, 95K cards, 1M transactions, 45K tickets) with referential integrity, Lagos-weighted geography, and realistic acquisition/KYC/tier funnels",
-    "Built a 4-page report: Executive Overview, Customer Insights, Transactions & Revenue, Support & Operations — synced Year/State/Tier slicers, YoY KPI cards, and ops visuals (category, channel, agent scorecard)",
-    "Wrote DAX for GTV, fee revenue, fraud rate, KYC verified %, HNI share, resolution rate, CSAT, and prior-year comparisons using SAMEPERIODLASTYEAR",
-    "Tuned support data to a 3–4 hour SLA, uneven ticket categories (including Tier Upgrade), and realistic channels (In-App, WhatsApp, Phone, Twitter/X, Email)"
+    "Prepared and cleaned a 1.4M+ row fintech dataset using Python, covering customers, accounts, cards, transactions, and support tickets with structured relationships across the data model",
+    "Built a 4-page report: Executive Overview, Customer Insights, Transactions & Revenue, Support & Operations — with synced Year/State/Tier slicers, KPI comparisons, and operational visuals across category, channel, and agent performance",
+    "Developed DAX measures for GTV, fee revenue, fraud rate, KYC verification, HNI share, resolution rate, CSAT, and historical performance comparisons",
+    "Analyzed customer lifecycle, transaction performance, revenue, fraud, KYC, and support operations to surface actionable business insights across the fintech ecosystem"
   ]
 },
    {
   "title": "Nexora Retail Analytics Dashboard",
-  "description": "End-to-end retail analytics for a fictional global retailer — sales performance, product intelligence, customer behaviour, digital channels, geography, and fulfilment across 2022–2026.",
+  "description": "End-to-end retail analytics for a  global retailer — sales performance, product intelligence, customer behaviour, digital channels, geography, and fulfilment.",
   "tags": ["Power BI", "DAX", "Python", "Retail Analytics", "Data Modeling"],
   "embedUrl": "https://app.powerbi.com/view?r=eyJrIjoiMzM2YmM2NjctOWU0Mi00N2NlLWExOWUtNzI4NDgyYzhhNGI0IiwidCI6IjBmYmYzYTYzLWIyZjMtNGIxZC1hN2Y1LTgxMTY5ZjgzNGI4YSJ9&pageName=71b15c450e49ecc02e50",
   "image": "",
